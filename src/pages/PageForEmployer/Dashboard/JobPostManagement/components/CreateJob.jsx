@@ -20,7 +20,10 @@ import {
 } from 'antd';
 import { 
   PushpinOutlined,
-  FileAddOutlined
+  FileAddOutlined,
+  DeleteOutlined,
+  PlusOutlined,
+  SaveOutlined
 } from '@ant-design/icons';
 import { createJob, getJobLimits } from '../../../../../api/jobApi';
 import { getAllIndustries } from '../../../../../api/industryApi';
@@ -643,51 +646,101 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
       {/* Modal tạo bài kiểm tra */}
       <Modal
         title={
-          <Title level={3} style={{ margin: 0, color: '#008000' }}>
-            Tạo bài kiểm tra
-          </Title>
+          <div style={{ 
+            borderBottom: '1px solid #f0f0f0',
+            padding: '16px 24px',
+            marginLeft: -24,
+            marginRight: -24,
+            marginTop: -16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px'
+          }}>
+            <FileAddOutlined style={{ fontSize: '24px', color: '#008000' }} />
+            <Title level={3} style={{ margin: 0, color: '#008000' }}>
+              Tạo bài kiểm tra
+            </Title>
+          </div>
         }
         open={isTestModalVisible}
         onCancel={() => setIsTestModalVisible(false)}
         footer={null}
         width={1000}
         style={{ top: 20 }}
+        styles={{ body: { padding: '24px' } }}
       >
         <div className="p-4">
-          <Title level={4} className="mb-4">Tạo bài kiểm tra</Title>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '24px'
+          }}>
+            <Title level={4} style={{ margin: 0 }}>Tạo bài kiểm tra</Title>
+            <div style={{ 
+              background: '#f6ffed', 
+              padding: '8px 16px', 
+              borderRadius: '16px',
+              border: '1px solid #b7eb8f'
+            }}>
+              <span style={{ color: '#008000' }}>
+                Đã thêm {testQuestions.length} câu hỏi
+              </span>
+            </div>
+          </div>
           
           {/* Form thêm câu hỏi mới */}
-          <Card className="mb-4">
+          <Card 
+            className="mb-4"
+            style={{ 
+              border: '1px solid #f0f0f0',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+            }}
+          >
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Câu hỏi</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <span style={{ color: '#008000' }}>•</span> Câu hỏi
+                </label>
                 <TextArea
                   value={currentQuestion.title}
                   onChange={(e) => setCurrentQuestion({ ...currentQuestion, title: e.target.value })}
-                  placeholder="Nhập câu hỏi"
+                  placeholder="Nhập câu hỏi..."
                   rows={3}
+                  style={{ 
+                    borderRadius: '8px',
+                    resize: 'none'
+                  }}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Các lựa chọn</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <span style={{ color: '#008000' }}>•</span> Các lựa chọn
+                </label>
                 <Space direction="vertical" style={{ width: '100%' }}>
                   {currentQuestion.options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <Radio
                         checked={currentQuestion.correctAnswer === index}
                         onChange={() => setCurrentQuestion({ ...currentQuestion, correctAnswer: index })}
+                        style={{ color: '#008000' }}
                       />
                       <Input
                         value={option}
                         onChange={(e) => updateOption(index, e.target.value)}
                         placeholder={`Lựa chọn ${index + 1}`}
-                        style={{ flex: 1 }}
+                        style={{ 
+                          flex: 1,
+                          borderRadius: '8px'
+                        }}
                       />
                       <Button
                         type="text"
                         danger
                         onClick={() => removeOption(index)}
+                        icon={<DeleteOutlined />}
                       />
                     </div>
                   ))}
@@ -696,6 +749,13 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
                   type="dashed"
                   onClick={addOption}
                   className="mt-2"
+                  icon={<PlusOutlined />}
+                  style={{ 
+                    width: '100%',
+                    borderRadius: '8px',
+                    borderColor: '#008000',
+                    color: '#008000'
+                  }}
                 >
                   Thêm lựa chọn
                 </Button>
@@ -705,9 +765,13 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
                 <Button
                   type="primary"
                   onClick={addQuestion}
+                  icon={<PlusOutlined />}
                   style={{ 
                     background: "linear-gradient(to right, #008000)",
-                    border: "none"
+                    border: "none",
+                    borderRadius: '8px',
+                    padding: '0 24px',
+                    height: '40px'
                   }}
                 >
                   Thêm câu hỏi
@@ -718,18 +782,53 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
 
           {/* Danh sách câu hỏi đã thêm */}
           {testQuestions.map((question, index) => (
-            <Card key={question.id} className="mb-4">
+            <Card 
+              key={question.id} 
+              className="mb-4"
+              style={{ 
+                border: '1px solid #f0f0f0',
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+              }}
+            >
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium mb-2">
-                    {index + 1}. {question.title}
-                  </h3>
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '8px',
+                    marginBottom: '16px'
+                  }}>
+                    <div style={{ 
+                      background: '#008000',
+                      color: 'white',
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '14px'
+                    }}>
+                      {index + 1}
+                    </div>
+                    <h3 className="text-lg font-medium" style={{ margin: 0 }}>
+                      {question.title}
+                    </h3>
+                  </div>
                   <Radio.Group value={question.correctAnswer} disabled>
-                    <Space direction="vertical">
+                    <Space direction="vertical" style={{ width: '100%' }}>
                       {question.options.map((option, i) => (
-                        <Radio key={i} value={i}>
-                          {option}
-                        </Radio>
+                        <div key={i} style={{ 
+                          padding: '8px 12px',
+                          borderRadius: '8px',
+                          background: i === question.correctAnswer ? '#f6ffed' : 'transparent',
+                          border: i === question.correctAnswer ? '1px solid #b7eb8f' : '1px solid #f0f0f0'
+                        }}>
+                          <Radio value={i} style={{ color: '#008000' }}>
+                            {option}
+                          </Radio>
+                        </div>
                       ))}
                     </Space>
                   </Radio.Group>
@@ -738,6 +837,8 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
                   type="text"
                   danger
                   onClick={() => deleteQuestion(question.id)}
+                  icon={<DeleteOutlined />}
+                  style={{ marginLeft: '16px' }}
                 />
               </div>
             </Card>
@@ -749,9 +850,13 @@ const CreateJob = ({ visible, onClose, onSuccess }) => {
               <Button
                 type="primary"
                 onClick={handleTestSave}
+                icon={<SaveOutlined />}
                 style={{ 
                   background: "linear-gradient(to right, #008000)",
-                  border: "none"
+                  border: "none",
+                  borderRadius: '8px',
+                  padding: '0 32px',
+                  height: '40px'
                 }}
               >
                 Lưu bài kiểm tra

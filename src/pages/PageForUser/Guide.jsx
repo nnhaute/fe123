@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Typography, Row, Col, Card, Tag, Input, Spin, Select, Empty, Divider } from 'antd';
 import { SearchOutlined, ClockCircleOutlined, UserOutlined, ReadOutlined } from '@ant-design/icons';
-import { getAllArticles } from '../../api/articleApi';
+import posts from '../../components/data/posts';
 import Footer from '../../components/user/common/Footer';
-
 
 const { Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
@@ -28,25 +27,23 @@ const Guide = () => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-    fetchArticles();
+    // Sử dụng dữ liệu từ posts.js
+    setArticles(posts);
+    setFeaturedArticle(posts[0]); // Bài viết đầu tiên làm featured
   }, []);
-
-  const fetchArticles = async () => {
-    try {
-      const data = await getAllArticles();
-      setArticles(data);
-      setFeaturedArticle(data[0]); // Bài viết mới nhất làm featured
-    } catch (error) {
-      console.error('Lỗi khi lấy bài viết:', error);
-    } 
-  };
 
   const getFilteredArticles = () => {
     return articles.filter(article => {
       const matchSearch = article.title.toLowerCase().includes(searchText.toLowerCase());
-      const matchCategory = selectedCategory === 'all' || article.categories.includes(selectedCategory);
+      const matchCategory = selectedCategory === 'all' || article.category === selectedCategory;
       return matchSearch && matchCategory;
     }).filter(article => article !== featuredArticle);
+  };
+
+  const handleArticleClick = (link) => {
+    if (link) {
+      window.open(link, '_blank');
+    }
   };
 
   if (loading) {
@@ -116,8 +113,9 @@ const Guide = () => {
               <Title level={3} style={{ marginBottom: 24 }}>Bài Viết Nổi Bật</Title>
               <Card
                 hoverable
-                style={{ overflow: 'hidden' }}
+                style={{ overflow: 'hidden', cursor: 'pointer' }}
                 bodyStyle={{ padding: 0 }}
+                onClick={() => handleArticleClick(featuredArticle.link)}
               >
                 <Row>
                   <Col xs={24} md={12}>
@@ -128,7 +126,7 @@ const Guide = () => {
                     />
                   </Col>
                   <Col xs={24} md={12} style={{ padding: 24 }}>
-                    <Tag color="blue">{featuredArticle.categories[0]}</Tag>
+                    <Tag color="blue">{featuredArticle.category}</Tag>
                     <Title level={3} style={{ marginTop: 16 }}>{featuredArticle.title}</Title>
                     <Paragraph ellipsis={{ rows: 3 }} style={{ color: '#666' }}>
                       {featuredArticle.description}
@@ -136,12 +134,12 @@ const Guide = () => {
                     <div style={{ marginTop: 16 }}>
                       <Text type="secondary">
                         <UserOutlined style={{ marginRight: 8 }} />
-                        {featuredArticle.source}
+                        {featuredArticle.author}
                       </Text>
                       <Divider type="vertical" />
                       <Text type="secondary">
                         <ClockCircleOutlined style={{ marginRight: 8 }} />
-                        {new Date(featuredArticle.pubDate).toLocaleDateString('vi-VN')}
+                        {new Date(featuredArticle.date).toLocaleDateString('vi-VN')}
                       </Text>
                     </div>
                   </Col>
@@ -159,7 +157,7 @@ const Guide = () => {
                   <Col xs={24} sm={12} lg={8} key={index}>
                     <Card
                       hoverable
-                      style={{ height: '100%' }}
+                      style={{ height: '100%', cursor: 'pointer' }}
                       cover={
                         <div style={{ height: 200, overflow: 'hidden' }}>
                           <img
@@ -174,9 +172,10 @@ const Guide = () => {
                           />
                         </div>
                       }
+                      onClick={() => handleArticleClick(article.link)}
                     >
                       <Tag color="blue" style={{ marginBottom: 12 }}>
-                        {article.categories[0]}
+                        {article.category}
                       </Tag>
                       <Title level={4} ellipsis={{ rows: 2 }} style={{ marginBottom: 12 }}>
                         {article.title}
@@ -187,12 +186,12 @@ const Guide = () => {
                       <div style={{ marginTop: 16 }}>
                         <Text type="secondary">
                           <UserOutlined style={{ marginRight: 8 }} />
-                          {article.source}
+                          {article.author}
                         </Text>
                         <Divider type="vertical" />
                         <Text type="secondary">
                           <ClockCircleOutlined style={{ marginRight: 8 }} />
-                          {new Date(article.pubDate).toLocaleDateString('vi-VN')}
+                          {new Date(article.date).toLocaleDateString('vi-VN')}
                         </Text>
                       </div>
                     </Card>

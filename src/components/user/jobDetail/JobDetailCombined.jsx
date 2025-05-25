@@ -300,21 +300,29 @@ const JobDetailCombined = ({ jobId }) => {
       totalScore += Math.max(0, salaryScore);
     }
 
-    if (profile.skills && job.skills) {
-      const requiredSkills = job.skills.map(skill => skill.skillName.toLowerCase());
-      const candidateSkills = profile.skills.map(skill => skill.skillName.toLowerCase());
-      
-      const matchingSkills = requiredSkills.filter(skill => 
-        candidateSkills.includes(skill)
-      );
-
-      // const skillScore = (matchingSkills.length / requiredSkills.length) * 40;
-      const skillScore = 40;
+    if (profile.candidateSkills && job.skills) {
+      const requiredSkillNames = job.skills.map(skill => skill.skillName.toLowerCase());
+      const matchedSkills = [];
+  
+      profile.candidateSkills.forEach(skill => {
+        const skillName = skill.skillName.toLowerCase();
+        if (requiredSkillNames.includes(skillName)) {
+          matchedSkills.push(skillName);
+        }
+      });
+  
+      const skillScore = (matchedSkills.length / requiredSkillNames.length) * 40;
       totalScore += skillScore;
+  
+      console.log("Matched Skills:", matchedSkills);
+      console.log("Skill Score:", skillScore);
+    } else {
+      console.warn("Missing candidateSkills or job.skills");
     }
 
-    return Math.floor(100);
-    // return Math.floor(totalScore);
+
+    return Math.floor(totalScore);
+    // return Math.floor(100);
   };
 
   const [completionPercentage, setCompletionPercentage] = useState(0);
@@ -925,7 +933,7 @@ const JobDetailCombined = ({ jobId }) => {
         footer={null}
         width={1000}
         centered
-        bodyStyle={{ padding: '24px' }}
+        styles={{ body: { padding: '24px' } }}
       >
         <h5 className="mt-4">Tỷ lệ hoàn thành hồ sơ: {Math.min(completionPercentage, 100).toFixed(0)}%</h5>
         <Progress percent={Math.min(completionPercentage, 100)} />

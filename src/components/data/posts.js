@@ -7,6 +7,7 @@ const posts = [
     date: "2024-03-20",
     description: "Hướng dẫn chi tiết cách tạo CV chuyên nghiệp cho sinh viên mới tốt nghiệp",
     thumbnail: "https://images.unsplash.com/photo-1586281380349-632531db7ed4",
+    link: "https://vieclam24h.vn/nghe-nghiep/la-ban-su-nghiep/cv-cho-sinh-vien-moi-ra-truong",
     content: `
       <h2>Làm thế nào để tạo ấn tượng với nhà tuyển dụng?</h2>
       <p>Khi bạn là sinh viên mới ra trường, việc tạo một CV ấn tượng là vô cùng quan trọng...</p>
@@ -34,6 +35,7 @@ const posts = [
     date: "2024-03-18",
     description: "Khám phá những ngành nghề đang có nhu cầu cao nhất trên thị trường",
     thumbnail: "https://images.unsplash.com/photo-1521737711867-e3b97375f902",
+    Link: "https://duhocquoctehaiduong.edu.vn/top-10-nhung-nganh-nghe-tuong-lai-2025/",
     content: `
       <h2>Những ngành nghề đang dẫn đầu xu hướng tuyển dụng</h2>
       <p>Thị trường lao động năm 2024 chứng kiến nhiều thay đổi đáng kể...</p>
@@ -60,6 +62,7 @@ const posts = [
     date: "2024-03-15",
     description: "Những bí quyết để thành công trong buổi phỏng vấn trực tuyến",
     thumbnail: "https://images.unsplash.com/photo-1616587226960-4a03badbe8bf",
+    link: "https://hssv.ulis.vnu.edu.vn/nhung-luu-y-khi-phong-van-online-giup-ghi-diem-tuyet-doi-voi-nha-tuyen-dung/",
     content: `
       <h2>Chuẩn bị cho buổi phỏng vấn online</h2>
       <p>Phỏng vấn trực tuyến đang trở thành xu hướng phổ biến...</p>
@@ -73,6 +76,7 @@ const posts = [
     date: "2024-03-12",
     description: "Chiến lược đàm phán lương thành công cho người đi làm",
     thumbnail: "https://images.unsplash.com/photo-1553877522-43269d4ea984",
+    link: "https://hrchannels.com/uptalent/cach-dam-phan-tang-luong-7-buoc-giup-ban-thanh-cong.html",
     content: `
       <h2>Nghệ thuật đàm phán lương</h2>
       <p>Đàm phán lương là kỹ năng quan trọng trong sự nghiệp...</p>
@@ -80,12 +84,13 @@ const posts = [
   },
   {
     id: 5,
-    title: "LinkedIn: Công cụ tìm việc hiệu quả",
+    title: "Công cụ tìm việc hiệu quả",
     category: "Kỹ năng tìm việc",
     author: "Digital Expert",
     date: "2024-03-10",
     description: "Tối ưu hóa profile LinkedIn để thu hút nhà tuyển dụng",
     thumbnail: "https://images.unsplash.com/photo-1611944212129-29977ae1398c",
+    link: "https://base.vn/blog/cac-trang-web-tuyen-dung/",
     content: `
       <h2>Xây dựng profile LinkedIn chuyên nghiệp</h2>
       <p>LinkedIn là công cụ không thể thiếu trong quá trình tìm việc...</p>
@@ -99,6 +104,7 @@ const posts = [
     date: "2024-03-08",
     description: "Phương pháp quản lý thời gian 4D giúp tăng năng suất công việc",
     thumbnail: "https://images.unsplash.com/photo-1506485338023-6ce5f36692df",
+    link: "https://www.pace.edu.vn/tin-kho-tri-thuc/quan-ly-thoi-gian",
     content: `
       <h2>Nghệ thuật quản lý thời gian trong công việc</h2>
       <p>Quản lý thời gian hiệu quả là chìa khóa để thành công trong công việc và cân bằng cuộc sống.</p>
@@ -133,6 +139,7 @@ const posts = [
     date: "2024-03-05",
     description: "Chiến lược xây dựng thương hiệu cá nhân toàn diện trên các nền tảng số",
     thumbnail: "https://images.unsplash.com/photo-1557804506-669a67965ba0",
+    link: "https://thinkdigital.com.vn/blog/brand-marketing/xay-dung-thuong-hieu-ca-nhan-6517/",
     content: `
       <h2>Xây dựng thương hiệu cá nhân chuyên nghiệp</h2>
       <p>Trong thời đại số, thương hiệu cá nhân là tài sản vô giá giúp bạn nổi bật trong sự nghiệp.</p>
@@ -168,6 +175,7 @@ const posts = [
     date: "2024-03-02",
     description: "Những điều cần biết khi làm việc trong môi trường đa quốc gia",
     thumbnail: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+    link: "https://vieclamvinhphuc.gov.vn/ky-nang-lam-viec-trong-moi-truong-da-van-hoa",
     content: `
       <h2>Làm việc hiệu quả trong môi trường đa văn hóa</h2>
       

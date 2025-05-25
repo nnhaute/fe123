@@ -258,7 +258,7 @@ const Hero = () => {
             }}>
               {/* Main Image */}
               <img 
-                src="/src/assets/logos/logoweb.webp" 
+                src="https://asset.cloudinary.com/dfoogsgjf/a2daf6433762a8e9bac7c37fe5da7324" 
                 alt="Job Opportunities" 
                 style={{ 
                   width: '100%',
