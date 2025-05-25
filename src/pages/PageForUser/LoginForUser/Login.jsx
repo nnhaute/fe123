@@ -21,7 +21,7 @@ const Login = () => {
   const { login: setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const GOOGLE_AUTH_URL = `https://fe123-qdj3.vercel.app/oauth2/authorization/google`;
+  const GOOGLE_AUTH_URL = `https://cvhubmth-30a934eec9be.herokuapp.com/oauth2/authorization/google`;
   const GITHUB_AUTH_URL = `https://fe123-qdj3.vercel.app/oauth2/authorization/github`;
   const FACEBOOK_AUTH_URL = `http://localhost:8080/oauth2/authorization/facebook`;
   const LINKEDIN_AUTH_URL = `http://localhost:8080/oauth2/authorization/linkedin`;
