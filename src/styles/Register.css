@@ -1,0 +1,118 @@
+/* Additional styles for register component */
+
+/* Form row for name fields */
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 0;
+}
+
+.form-group-half {
+  flex: 1;
+}
+
+/* Terms checkbox styling */
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #008000;
+}
+
+.terms-checkbox label {
+  font-size: 14px;
+  color: #666;
+}
+
+.terms-checkbox a {
+  color: #00a650;
+  text-decoration: none;
+  position: relative;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+.terms-checkbox a::after {
+  content: '*';
+  color: #ff4d4f;
+  position: relative;
+  top: -5px;
+  margin-left: 2px;
+}
+
+/* Verification step styles */
+.verification-countdown {
+  text-align: center;
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f0f5ff;
+  border-radius: 4px;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.verification-input {
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #00a650;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.btn-link:disabled {
+  color: #d9d9d9;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  width: 100%;
+  height: 45px;
+  background-color: #f0f0f0;
+  color: #666;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* Animation for transitioning between steps */
+.form-content {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 576px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-group-half {
+    width: 100%;
+  }
+}
